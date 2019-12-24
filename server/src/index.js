@@ -15,13 +15,28 @@ const resolvers = {
   Link,
   Vote,
 }
+const opts = {
+  port: 4000,
+  cors: {
+    credentials: false,
+    origin: ['http://localhost:3000', 'http://localhost:4000'],
+    methods: 'GET,POST,PATCH,DELETE,PUT',
+    optionsSuccessStatus: 204
+  }
+}; 
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
   context: request => ({
+    cors: {
+      credentials: false,
+      origin: ["*"],
+      methods: '*',
+      optionsSuccessStatus: 204
+    },
     ...request,
     prisma,
   }),
 })
-server.start(() => console.log(`Server is running on http://localhost:4000`))
+server.start(opts, () => console.log(`Server is running on http://localhost:4000`))
