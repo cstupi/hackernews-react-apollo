@@ -53,7 +53,7 @@ class Link extends Component {
           <div className="f6 lh-copy gray">
             {this.props.link.votes.length} votes | by {' '}
             {this.props.link.postedBy
-              ? this.props.link.prostedBy.name
+              ? this.props.link.postedBy.name
               : 'Unknown'}{' '}
             {timeDifferenceForDate(this.props.link.createdAt)}
           </div>
